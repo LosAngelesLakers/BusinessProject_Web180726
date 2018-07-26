@@ -33,6 +33,7 @@ public class ProductController extends HttpServlet{
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String operation=request.getParameter("operation");
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		if(operation.equals("1")) {
 			addProduct(request,response);
 		}else if(operation.equals("2")) {
@@ -111,13 +112,13 @@ public class ProductController extends HttpServlet{
     	 * 第二个products是List集合
     	 * 将查询出的商品集合放入request作用域中
     	 */
-    	/*request.setAttribute("pageModel", pageModel);
-    	request.getRequestDispatcher("showProductByPage.jsp").forward(request,response);*/
+    	request.setAttribute("pageModel", pageModel);
+    	request.getRequestDispatcher("showProductByPage.jsp").forward(request,response);
 
     	
-    	String json=JSONArray.toJSONString(pageModel);
+    	/*String json=JSONArray.toJSONString(pageModel);
     	response.getWriter().print(json);
-    	System.out.println(json);
+    	System.out.println(json);*/
     }
     
     /*

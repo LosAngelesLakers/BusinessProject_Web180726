@@ -1,45 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+         pageEncoding="UTF-8"%>
+<!doctype html>
+<html lang="zh">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="" type="text/css"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3方块动画背景登录界面模板</title>
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+
 </head>
 <body>
-   <div class="container-fluid" style="height:500px;">
-      <div class="row"">
-         <div class="col-xs-12 col-md-12  col-lg-12 ">
-                   <div id="picbox">
-                      <img src="imgs/华为logo.png">
-                   </div>
-         </div>
-      </div>
 
-      <div class="row" style="margin-top: 100px">
-          <div class="col-xs-12 col-md-6  col-lg-6 ">
-             <form action="login.do" method="post">
-                 <table align="center" style="font-size: 20px">
-                    <tr>
-                      <td>用户名</td>
-                      <td><input type="text" name="username"/></td>
-                    </tr>
-                    <tr></tr> <tr></tr> <tr></tr> <tr></tr>
-                    <tr>
-                      <td>密码</td>
-                      <td><input type="password" name="password"/></td>
-                    </tr>
-                    <tr></tr> <tr></tr> <tr></tr> <tr></tr>
-                     <tr>
-                        <td></td>
-                        <td><input type="submit" value="   登录   "></td>
-                        <td> <a href="view/addAccount.jsp">注册</a> </td>  
-                     </tr>
-                 </table>
-             </form>
-      </div>          
+
+<div class="wrapper">
+
+    <div class="container">
+        <h1>Welcome</h1>
+        <form class="form">
+            <input type="text" placeholder="用户名" name="username">
+            <input type="password" placeholder="密码" name="password">
+            <button type="submit" id="login-button">登录</button>
+        </form>
     </div>
+
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
 </div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    $('#login-button').click(function(event){
+        event.preventDefault();
+        $('form').fadeOut(500);
+        $('.wrapper').addClass('form-success');
+    });
+</script>
+
 </body>
 </html>

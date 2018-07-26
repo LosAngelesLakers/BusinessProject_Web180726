@@ -47,7 +47,7 @@ public class LoginFilter implements Filter {
 	 * ServletRequest的request不能获取cookie	
 	 */
 		
-		System.out.println("到达loginFilter过滤器");
+		System.out.println("loginFilter");
 		HttpServletRequest _request=(HttpServletRequest)request;
 		HttpServletResponse _response=(HttpServletResponse)response;
 		
