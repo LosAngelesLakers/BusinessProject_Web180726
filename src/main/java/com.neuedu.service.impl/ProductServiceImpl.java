@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.neuedu.dao.ProductDao;
 import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
+import com.neuedu.dao.impl.jdbc.mybatis.ProductMybatisImpl;
 import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
@@ -11,7 +12,7 @@ import com.neuedu.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 
 	
-	ProductDao productDao=new ProductDaoImpl();
+	ProductDao productDao=new ProductMybatisImpl();
 	
 	@Override
 	public boolean addProduct(Product product) {

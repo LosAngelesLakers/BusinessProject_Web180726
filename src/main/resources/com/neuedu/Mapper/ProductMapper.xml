@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.entity.Product">
+
+<insert id="insertProduct" parameterType="com.neuedu.entity.Product">
+insert into product(name,Pdesc,price,rule,image,stock,category_id) values (#{name},#{desc},#{price},#{rule},#{image},#{stock},#{category_id});
+</insert>
+
+ <delete id="deleteProduct" parameterType="java.lang.Integer">
+delete from  product where id=#{id};
+ </delete>
+
+ <update id="updateProduct" parameterType="com.neuedu.entity.Product">
+   update product set name=#{name},pdesc=#{desc},price=#{price},rule=#{rule},image=#{image},stock=#{stock},category_id=#{category_id} where id=#{id}
+ </update>
+
+ <select id="findById" parameterType="java.lang.Integer" resultType="com.neuedu.entity.Product">
+   select id,name,pdesc,price,rule ,image,stock,category_id from  product where id=#{id}
+ </select>
+</mapper>

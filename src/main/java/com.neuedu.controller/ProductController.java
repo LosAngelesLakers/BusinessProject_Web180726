@@ -86,7 +86,8 @@ public class ProductController extends HttpServlet{
 	/**添加商品*/
     public  boolean addProduct(Product product) {
     	return pService.addProduct(product);
-    }	
+    }
+
     /**查询商品
      * @throws IOException 
      * @throws ServletException */

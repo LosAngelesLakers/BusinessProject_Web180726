@@ -52,6 +52,7 @@
       <artifactId>mybatis</artifactId>
       <version>3.4.5</version>
     </dependency>
+
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -87,6 +88,11 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.41</version>
     </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter-api</artifactId>
+          <version>RELEASE</version>
+      </dependency>
   </dependencies>
 
   <build>

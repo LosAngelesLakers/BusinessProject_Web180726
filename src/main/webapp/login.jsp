@@ -18,7 +18,7 @@
 
     <div class="container">
         <h1>Welcome</h1>
-        <form class="form">
+        <form class="form" action="login.do" method="post">
             <input type="text" placeholder="用户名" name="username">
             <input type="password" placeholder="密码" name="password">
             <button type="submit" id="login-button">登录</button>
