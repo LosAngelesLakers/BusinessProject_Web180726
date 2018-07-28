@@ -20,6 +20,8 @@
     <mappers>
         <mapper resource="com/neuedu/Mapper/UserMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/ProductMapper.xml"  />
+        <mapper resource="com/neuedu/Mapper/AccountMapper.xml"  />
+        <mapper resource="com/neuedu/Mapper/CartMapper.xml"  />
     </mappers>
 
 

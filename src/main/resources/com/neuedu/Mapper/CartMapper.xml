@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.entity.Cart">
+
+<insert id="insertCart" parameterType="com.neuedu.entity.Cart">
+   insert into cart(productid,productNum,unit_price,totalprice) values (#{productid},#{productNum},#{unit_price},#{totalprice})
+</insert>
+
+ <delete id="deleteCar" parameterType="java.lang.Integer">
+     delete from cart where id=#{id}
+ </delete>
+
+<update id="updataeCar" parameterType="java.util.Map">
+    update cart set productnum=#{productNum} where id=#{id}
+</update>
+
+<select id="findAllCar" resultType="com.neuedu.entity.Cart">
+    select id,productid,productnum,unit_price,totalprice from cart
+</select>
+
+<update id="updateCar" parameterType="java.util.Map">
+        update cart set productnum=#{productNum} where id=#{id}
+</update>
+
+<select id="findCartById" resultType="com.neuedu.entity.Cart" parameterType="java.lang.Integer">
+    select id,productid,productnum,unit_price,totalprice from  cart where id=#{id}
+</select>
+
+<select id="findTotalCount" resultType="java.lang.Integer">
+        select count(id) from cart
+</select>
+
+<select id="findCartByPage" resultType="com.neuedu.entity.Cart" parameterType="java.util.Map">
+select id,productid,productnum,unit_price,totalprice from  cart limit #{offset},#{pageSize}
+</select>
+
+</mapper>

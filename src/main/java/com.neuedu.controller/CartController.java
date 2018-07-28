@@ -199,8 +199,8 @@ public class CartController extends HttpServlet{
 				 // System.out.println(productNum);
 //				  cart.setId(id);
 //				  cart.setProductid(productid);
-				System.out.println(Integer.parseInt(request.getParameter("productNum")));
-				System.out.println(Integer.parseInt(request.getParameter("id")));
+				System.out.println("productNum"+Integer.parseInt(request.getParameter("productNum")));
+				System.out.println("id"+Integer.parseInt(request.getParameter("id")));
 				cart.setId(id);
 				cart.setProductNum(productNum);
 				System.out.println("id="+id);
