@@ -9,5 +9,15 @@
  select * from  account where username=#{username} and password=#{password}
 </select>
 
+ <update id="addToken" parameterType="java.util.Map">
+        update account set token=#{token} where accountid=#{accountid}
+ </update>
+
+
+    <select id="findTokenByAccountid" parameterType="java.lang.Integer" resultType="java.lang.String">
+            select token from account where accountid=#{accountid}
+    </select>
+
+
 
 </mapper>

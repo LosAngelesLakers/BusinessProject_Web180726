@@ -13,7 +13,9 @@ import javax.annotation.Resource;
 import javax.print.DocFlavor;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductMybatisImpl  implements ProductDao{
 
@@ -27,12 +29,15 @@ public class ProductMybatisImpl  implements ProductDao{
         sqlSession.insert("com.neuedu.entity.Product.insertProduct",product);
         sqlSession.commit();
 
-        return false;
+        return true;
     }
 
     @Override
     public List<Product> findAll() {
-        return null;
+        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+        List<Product> list= sqlSession.selectList("com.neuedu.entity.Product.findProduct");
+        sqlSession.close();
+        return list;
     }
 
     @Override
@@ -50,7 +55,7 @@ public class ProductMybatisImpl  implements ProductDao{
         sqlSession.commit();
         sqlSession.close();
 
-        return false;
+        return true;
     }
 
     @Override
@@ -74,7 +79,7 @@ public class ProductMybatisImpl  implements ProductDao{
         sqlSession.close();
 
 
-        return false;
+        return true;
     }
 
     @Override
@@ -101,7 +106,20 @@ public class ProductMybatisImpl  implements ProductDao{
 
     @Override
     public PageModel<Product> findProductByPage(int pageNo, int pageSize) {
-        return null;
+        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+        //1.查询总的记录数
+        int totalCount=sqlSession.selectOne("com.neuedu.entity.Product.findTotalCount");
+        //2.查询某页面的数据
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("offset",(pageNo-1)*pageSize);
+        map.put("pageSize",pageSize);
+        List<Product> list=sqlSession.selectList("com.neuedu.entity.Product.findUserbyPage",map);
+
+        PageModel<Product> pageModel=new PageModel<Product>();
+        pageModel.setTotalPage((totalCount%pageSize)==0?totalCount/pageSize:(totalCount/pageSize)+1);
+        pageModel.setData(list);
+        pageModel.setCurrentPage(pageNo);
+        return pageModel;
     }
 
     @Override

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
     $('#login-button').click(function(event){
-        event.preventDefault();
+
         $('form').fadeOut(500);
         $('.wrapper').addClass('form-success');
     });

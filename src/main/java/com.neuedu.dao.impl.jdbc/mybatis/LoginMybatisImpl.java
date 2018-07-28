@@ -2,6 +2,7 @@ package com.neuedu.dao.impl.jdbc.mybatis;
 
 import com.neuedu.dao.ILoginDao;
 import com.neuedu.entity.Account;
+import com.neuedu.utils.MyBatisUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -33,16 +34,28 @@ public class LoginMybatisImpl implements ILoginDao{
         Account account=session.selectOne("com.neuedu.entity.Account.findByUserAndPassword",map);
         System.out.println(account);
         session.close();
-        return null;
+        return account;
     }
 
     @Override
     public void addToken(String token, Account acc) {
-
+       SqlSession sqlSession= MyBatisUtils.getSqlSession();
+       Map<String,Object> map=new HashMap<String,Object>();
+        map.put("token",token);
+        map.put("accountid",acc.accountId);
+        sqlSession.update("com.neuedu.entity.Account.addToken",map);
+        sqlSession.commit();
+        sqlSession.close();
+        System.out.println("ÐÞ¸Ä³É¹¦");
     }
 
     @Override
     public String findTokenByAccountid(int accountid) {
-        return null;
+       SqlSession  sqlSession=MyBatisUtils.getSqlSession();
+        String token=sqlSession.selectOne("com.neuedu.entity.Account.findTokenByAccountid",accountid);
+
+       sqlSession.close();
+
+      return token;
     }
 }

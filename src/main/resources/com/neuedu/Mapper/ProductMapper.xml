@@ -16,7 +16,24 @@ delete from  product where id=#{id};
    update product set name=#{name},pdesc=#{desc},price=#{price},rule=#{rule},image=#{image},stock=#{stock},category_id=#{category_id} where id=#{id}
  </update>
 
+  <!--<resultMap type="com.neuedu.entity.Product" id="ProductresultMap">
+    <id column="id" property="id"/>
+    <result column="name" property="Product_name"/>
+  </resultMap>-->
  <select id="findById" parameterType="java.lang.Integer" resultType="com.neuedu.entity.Product">
    select id,name,pdesc,price,rule ,image,stock,category_id from  product where id=#{id}
  </select>
+
+    <select id="findProduct" resultType="com.neuedu.entity.Product">
+        select id,name,pdesc,price,rule ,image,stock,category_id from  product
+    </select>
+
+   <select id="findTotalCount" resultType="java.lang.Integer">
+       SELECT COUNT(id) from product
+   </select>
+
+    <select id="findUserbyPage" parameterType="java.util.Map" resultType="com.neuedu.entity.Product">
+      select id,name,pdesc,price,rule,image,stock,category_id from product limit #{offset},#{pageSize}
+    </select>
+
 </mapper>

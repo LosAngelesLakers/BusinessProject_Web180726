@@ -3,6 +3,8 @@ import com.neuedu.dao.impl.jdbc.mybatis.ProductMybatisImpl;
 import com.neuedu.entity.Product;
 import org.junit.Test;
 
+import java.util.List;
+
 public class ProductTest {
     ProductDao productDao=new ProductMybatisImpl();
     @Test
@@ -45,5 +47,11 @@ public class ProductTest {
     public void findById(){
         Product produ= productDao.findById(51);
         System.out.println(produ.getName());
+    }
+
+    @Test
+    public void testfindProduct(){
+        List<Product> produ = productDao.findAll();
+       System.out.println(produ.size());
     }
 }
