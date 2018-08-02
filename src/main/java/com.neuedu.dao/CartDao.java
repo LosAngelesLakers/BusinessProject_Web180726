@@ -40,7 +40,7 @@ public interface CartDao {
 	 * @param  id  要修改的商品的Id
 	 * @param  num 修改后的数量
 	 * */
-	boolean  updateCart(int id, int num);
+	boolean  updateCart(int id, int num,int totalprice);
 	
 
 	/**

@@ -11,26 +11,22 @@ import com.neuedu.utils.DBUtils;
 
 public class OrderItemDaoImpl implements OrderItemDao {
 
+	/**
+	 * 将订单下的订单明细添加到订单明细集合中
+	 * */
 	@Override
 	public boolean addOrderItems(List<UserOrderItem> orederItems) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stu
 		Connection conn=null;
 		Statement st=null;
 		try {
 			conn=DBUtils.getConnection();
-			
 			st=conn.createStatement();
-		
-		
 			String sql="insert into userorderitem(order_no,user_id,productid,product_name,product_image,current_unit_price,quantity,total_price,create_time) values";
 			 StringBuffer sbuffer=new StringBuffer(sql);
-			 
 			 for(int i=0;i<orederItems.size();i++) {
-				
 				 UserOrderItem userOrderItem=orederItems.get(i);
 				 sbuffer.append("(");
-				 
 				 sbuffer.append(userOrderItem.getOrder_no()+",");
 				 sbuffer.append(userOrderItem.getUser_id()+",");
 				 sbuffer.append(userOrderItem.getProduct_id()+",");
@@ -41,21 +37,13 @@ public class OrderItemDaoImpl implements OrderItemDao {
 				 sbuffer.append(userOrderItem.getTotal_price()+",");
 				 sbuffer.append("now()");
 				 sbuffer.append(")");
-				 
 				 if(i!=orederItems.size()-1) {
 					 sbuffer.append(",");
 				 }
-				
-				 
 			 }
-			 
-			
-			
-			
 			System.out.println(sbuffer);
 			st.execute(sbuffer.toString());
 			return true;
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,17 +55,11 @@ public class OrderItemDaoImpl implements OrderItemDao {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
 		return false;
 	}
-
+	/**
+	 * 生成订单明细id
+	 * */
 	@Override
 	public int generateOrderItemId() {
 		// TODO Auto-generated method stub

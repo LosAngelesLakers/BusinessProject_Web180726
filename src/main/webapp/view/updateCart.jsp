@@ -13,6 +13,7 @@
 <form action="cart" method="get">
 <input type="hidden" name="operation" value="5">
 <input type="hidden" name="id" value="${cart.id}">
+   <input type="hidden" name="unit_price" value="${cart.unit_price}">
    <table align="center">
    <tr>
    <%-- <td>购物车id</td>

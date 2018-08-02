@@ -1,6 +1,7 @@
 package com.neuedu.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSONArray;
+import com.google.gson.Gson;
 import com.neuedu.dao.ProductDao;
 import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
 import com.neuedu.entity.Cart;
@@ -31,7 +34,10 @@ public class CartController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("CartController类");
+        response.setHeader("Access-Control-Allow-Origin", "*");
 		String operation=request.getParameter("operation");
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 		System.out.println(operation);
 		if(operation.equals("1")) {
 			
@@ -168,7 +174,11 @@ public class CartController extends HttpServlet{
     		boolean result=cartService.deleteCart(id);
     		if(result) {
     			System.out.println(id+"购物车已删除");
-    			findAllCart(request,response);
+    			/*findAllCart(request,response);*/
+    			response.sendRedirect("http://127.0.0.1:8020/dianshang/shopingcar.html");
+/*
+    			request.getRequestDispatcher("http://127.0.0.1:8020/dianshang/shopingcar.html").forward(request,response);
+*/
     		}else {
     			System.out.println(id+"购物车删除失败");
     		}
@@ -194,17 +204,17 @@ public class CartController extends HttpServlet{
 			try {
 				System.out.println("try块");
 				id=Integer.parseInt((request.getParameter("id")));
-//				productid=Integer.getInteger(request.getParameter("productid"));
+				System.out.println(id);
 				productNum=Integer.parseInt(request.getParameter("productNum"));
-				 // System.out.println(productNum);
-//				  cart.setId(id);
-//				  cart.setProductid(productid);
+				int unit_price=Integer.parseInt(request.getParameter("unit_price"));
 				System.out.println("productNum"+Integer.parseInt(request.getParameter("productNum")));
 				System.out.println("id"+Integer.parseInt(request.getParameter("id")));
 				cart.setId(id);
 				cart.setProductNum(productNum);
+				cart.setTotalprice(productNum*unit_price);
 				System.out.println("id="+id);
 				System.out.println("productNum="+productNum);
+                System.out.println("共支付了*********"+productNum*unit_price);
 				result=updateCart(cart);
 				System.out.println(cart.getProductNum());
 			}catch(NumberFormatException e) {
@@ -229,7 +239,7 @@ public class CartController extends HttpServlet{
 	 * @throws ServletException 
 	 * */
 	public void findAllCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String pageNo=request.getParameter("pageNo");
+		/*String pageNo=request.getParameter("pageNo");
     	String pageSize=request.getParameter("pageSize");
     	System.out.println(request.getParameter("pageNo"));
     	System.out.println("pageSize="+pageSize);
@@ -245,17 +255,23 @@ public class CartController extends HttpServlet{
     		e.printStackTrace();
     	}
     	
-    	PageModel<Cart> pageModel= cartService.findByPage(_pageNo, _pageSize);
+    	PageModel<Cart> pageModel= cartService.findByPage(_pageNo, _pageSize);*/
     	/*
     	 * 第二个products是List集合
     	 * 将查询出的商品集合放入request作用域中
     	 */
-    	request.setAttribute("pageModel", pageModel);
-    	request.getRequestDispatcher("showCart.jsp").forward(request,response);
-		
-		
-		
-		
+    	List<Cart>list=cartService.findAllCart();
+        Gson gson=new Gson();
+        String json=gson.toJson(list);
+        System.out.println(list);
+		response.getWriter().append("success_jsonpCallback("+json+")");
+
+       /* response.getWriter().print(json);*/
+		/*String json= JSONArray.toJSONString(pageModel);
+        response.getWriter().print(json);*/
+
+    	/*request.setAttribute("pageModel", pageModel);
+    	request.getRequestDispatcher("showCart.jsp").forward(request,response);*/
 	  	/*List<Cart> carts= cartService.findAllCart();
     	
     	 * 第二个products是List集合

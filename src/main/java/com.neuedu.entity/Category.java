@@ -62,6 +62,7 @@ public void setSort_order(int sort_order) {
 }
 
 public Date getCreat_time() {
+
 	return creat_time;
 }
 
@@ -78,6 +79,16 @@ public void setUpdate_time(Date update_time) {
 }
 
 
-
-
+	@Override
+	public String toString() {
+		return "Category{" +
+				"id=" + id +
+				", parent_id=" + parent_id +
+				", name='" + name + '\'' +
+				", status=" + status +
+				", sort_order=" + sort_order +
+				", creat_time=" + creat_time.getTime()+
+				", update_time=" + update_time +
+				'}';
+	}
 }

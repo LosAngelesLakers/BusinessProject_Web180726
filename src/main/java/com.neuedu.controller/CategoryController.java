@@ -1,6 +1,8 @@
 package com.neuedu.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -61,13 +63,22 @@ public class CategoryController extends HttpServlet {
 			int parent_id=Integer.parseInt(request.getParameter("parent_id"));
 			int status=Integer.parseInt(request.getParameter("status"));
 			int sort_order=Integer.parseInt(request.getParameter("sort_order"));
-			String creat_time=request.getParameter("creat_time");
-			String update_time=request.getParameter("update_time");
+
 			category.setId(id);
 			category.setParent_id(parent_id);
 			category.setName(name);
 			category.setStatus(status);
 			category.setSort_order(sort_order);
+
+			/*Date creatDate = new Date();
+			Date date = new Date(creatDate.getTime());
+
+
+
+			category.setCreat_time(now());
+			category.setUpdate_time(date);*/
+			System.out.println("addCategory");
+
 			result=addCategory(category);
             System.out.println(category.getName());
 			if(result) {
@@ -179,8 +190,8 @@ public class CategoryController extends HttpServlet {
 			category.setName(name);
 			category.setStatus(status);
 			category.setSort_order(sort_order);
-			
-			
+
+
 			result=updateCategory(category);
 			
 		}catch(NumberFormatException e) {

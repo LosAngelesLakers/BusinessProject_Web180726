@@ -45,9 +45,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean updateCart(int id, int num) {
+	public boolean updateCart(int id, int num,int totalprice) {
 		// TODO Auto-generated method stub
-		return cartDao.updateCart(id, num);
+		return cartDao.updateCart(id, num,totalprice);
 	}
 
 	@Override

@@ -35,6 +35,7 @@ public class CartMybatisImpl implements CartDao {
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("productNum",cart.getProductNum());
         map.put("id",cart.getId());
+        map.put("totalprice",cart.getTotalprice());
         sqlSession.update("com.neuedu.entity.Cart.updataeCar",map);
         sqlSession.commit();
         sqlSession.close();
@@ -46,7 +47,9 @@ public class CartMybatisImpl implements CartDao {
         SqlSession sqlSession=MyBatisUtils.getSqlSession();
         List<Cart> list=sqlSession.selectList("com.neuedu.entity.Cart.findAllCart");
         sqlSession.close();
+        System.out.println(list);
         return list;
+
     }
 
     @Override
@@ -55,10 +58,11 @@ public class CartMybatisImpl implements CartDao {
     }
 
     @Override
-    public boolean updateCart(int id, int num) {
+    public boolean updateCart(int id, int num,int totalprice) {
         SqlSession sqlSession=MyBatisUtils.getSqlSession();
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("productNum",num);
+        map.put("totalprice",totalprice);
         map.put("id",id);
 
         sqlSession.update("com.neuedu.entity.Cart.updataeCar",map);

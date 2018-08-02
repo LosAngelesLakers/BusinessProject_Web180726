@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.entity.Category">
+    <!--添加类别-->
+    <insert id="addCategory" parameterType="com.neuedu.entity.Category">
+        insert into category(parent_id,name,status,sort_order,creat_time,update_time) values (#{parent_id},#{name},#{status},#{sort_order},now(),now())
+    </insert>
+
+    <!--查询类别-->
+    <select id="findAll" resultType="com.neuedu.entity.Category">
+          select id,parent_id,name,status,sort_order,creat_time,update_time from  category
+    </select>
+
+    <!--修改类别-->
+    <update id="updateCategory" parameterType="com.neuedu.entity.Category">
+         update category set parent_id=#{parent_id},name=#{name},status=#{status},sort_order=#{sort_order} where id=#{id}
+    </update>
+    <!--删除类别-->
+    <delete id="deleteCategory" parameterType="java.lang.Integer">
+           delete from  category where id=#{id}
+    </delete>
+
+    <select id="findById" parameterType="java.lang.Integer" resultType="com.neuedu.entity.Category">
+         select id,parent_id,name,status,sort_order,creat_time,update_time from  category where id=#{id}
+    </select>
+
+    <select id="findTotalCount" resultType="java.lang.Integer">
+          SELECT  COUNT(id) from category;
+    </select>
+
+    <select id="findCategorybyPage" parameterType="java.util.Map" resultType="com.neuedu.entity.Category">
+         select id,parent_id,name,status,sort_order,creat_time,update_time from  category limit #{offset},#{pageSize}
+    </select>
+</mapper>

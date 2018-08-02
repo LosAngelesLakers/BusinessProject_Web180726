@@ -13,15 +13,29 @@
  </delete>
 
 <update id="updataeCar" parameterType="java.util.Map">
-    update cart set productnum=#{productNum} where id=#{id}
+    update cart set productnum=#{productNum},totalprice=#{totalprice} where id=#{id}
 </update>
 
-<select id="findAllCar" resultType="com.neuedu.entity.Cart">
-    select id,productid,productnum,unit_price,totalprice from cart
+    <resultMap id="findCart_Product" type="com.neuedu.entity.Cart" autoMapping="true">
+        <id property="id" column="id"></id>
+        <result property="productNum" column="productnum"></result>
+
+        <association property="product" javaType="com.neuedu.entity.Product" column="productid"  autoMapping="true">
+            <id property="id" column="productid"></id>
+
+            <result property="desc" column="pdesc"></result>
+
+        </association>
+    </resultMap>
+
+<select id="findAllCart" resultMap="findCart_Product">
+    select c.id,c.productid,c.productnum,c.unit_price,c.totalprice,p.name,p.pdesc,p.price,p.rule,p.stock,p.category_id
+    from cart c,product p
+    WHERE c.productid=p.id
 </select>
 
 <update id="updateCar" parameterType="java.util.Map">
-        update cart set productnum=#{productNum} where id=#{id}
+        update cart set productnum=#{productNum},totalprice=#{totalprice} where id=#{id}
 </update>
 
 <select id="findCartById" resultType="com.neuedu.entity.Cart" parameterType="java.lang.Integer">
@@ -31,6 +45,8 @@
 <select id="findTotalCount" resultType="java.lang.Integer">
         select count(id) from cart
 </select>
+
+
 
 <select id="findCartByPage" resultType="com.neuedu.entity.Cart" parameterType="java.util.Map">
 select id,productid,productnum,unit_price,totalprice from  cart limit #{offset},#{pageSize}

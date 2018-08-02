@@ -170,14 +170,14 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
-	public boolean updateCart(int id, int num) {
+	public boolean updateCart(int id, int num,int totalprice) {
 		// TODO Auto-generated method stub
 		Connection conn=null;
 		Statement st=null;
 		try {
 			conn=DBUtils.getConnection();
 			st=conn.createStatement();
-			String  sql="update cart set productnum="+num+" where id="+id+"";
+			String  sql="update cart set productnum="+num+"totalprice="+totalprice+"where id="+id+"";
 			System.out.println(sql);
 			st.execute(sql);
 			return true;

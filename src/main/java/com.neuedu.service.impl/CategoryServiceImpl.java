@@ -6,6 +6,7 @@ import com.neuedu.dao.CategoryDao;
 import com.neuedu.dao.ProductDao;
 import com.neuedu.dao.impl.jdbc.CategoryDaoImpl;
 import com.neuedu.dao.impl.jdbc.ProductDaoImpl;
+import com.neuedu.dao.impl.jdbc.mybatis.CategoryMybatisImpl;
 import com.neuedu.entity.Category;
 import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
@@ -13,7 +14,7 @@ import com.neuedu.service.CategoryService;
 
 public class CategoryServiceImpl implements CategoryService {
 
-	CategoryDao categoryDao=new CategoryDaoImpl();
+	CategoryDao categoryDao=new CategoryMybatisImpl();
 	
 	
 	@Override

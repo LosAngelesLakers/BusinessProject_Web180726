@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="jdbc.properties"/>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
     <environments default="development">
         <environment id="development">
             <!--  将事务交给JDBC -->
@@ -22,9 +25,13 @@
         <mapper resource="com/neuedu/Mapper/ProductMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/AccountMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/CartMapper.xml"  />
+        <mapper resource="com/neuedu/Mapper/CategoryMapper.xml"  />
+        <mapper resource="com/neuedu/Mapper/UserOrderMapper.xml"  />
     </mappers>
 
 
 
 
 </configuration>
+
+

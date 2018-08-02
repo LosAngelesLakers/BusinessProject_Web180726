@@ -10,9 +10,7 @@ public class  Account{
 	public  String  sex;
 	public  int Stock; 
 	public  String token;
-	
-	
-	
+
     public Account(int accountId, String username, String password, String ip, String sex, int stock, String token) {
 		super();
 		this.accountId = accountId;

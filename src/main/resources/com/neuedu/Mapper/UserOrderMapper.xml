@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.entity.UserOrder">
+
+<insert id="createOrder" parameterType="com.neuedu.entity.UserOrder">
+insert into userorder(order_no,user_id,shipping_id,payment,payment_type,postage,status,create_time)
+		 values (#{order_no},#{user_id},#{shipping_id},#{payment},#{payment_type},#{postage},#{status},#{create_time})
+</insert>
+
+	<select id="findTotalCount" resultType="java.lang.Integer">
+	    SELECT  COUNT(id) FROM  userorder;
+	</select>
+
+	<select id="findUserOrderByPage" parameterType="java.util.Map" resultType="com.neuedu.entity.UserOrder">
+	select id,order_no,user_id,shipping_id,payment,payment_type,postage,status,create_time from userorder limit #{offset},#{pageSize}
+	</select>
+
+
+</mapper>
+

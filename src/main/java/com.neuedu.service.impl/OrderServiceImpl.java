@@ -9,6 +9,7 @@ import com.neuedu.dao.OrderItemDao;
 import com.neuedu.dao.impl.jdbc.CartDaoImpl;
 import com.neuedu.dao.impl.jdbc.OrderDaoImpl;
 import com.neuedu.dao.impl.jdbc.OrderItemDaoImpl;
+import com.neuedu.dao.impl.jdbc.mybatis.OrderMybatisImpl;
 import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
@@ -18,7 +19,7 @@ import com.neuedu.service.OrderService;
 import com.neuedu.utils.Utils;
 
 public class OrderServiceImpl implements OrderService {
-    OrderDao orderdao=new  OrderDaoImpl();
+    OrderDao orderdao=new OrderMybatisImpl();
 	
 	
 	@Override

@@ -16,9 +16,10 @@
 			})
 </script>
 <style>		
-	#menu{
-			
-		}
+        *{
+            margin: 0px;
+            padding: 0px;
+            }
 		ul{
 			list-style: none;
 			margin: 0px;
@@ -27,22 +28,38 @@
 		
 		
 		.current{
-			color: red;
+			background-color: #22282E;
 		}	
-		 
+		 .normal{
+             background-color: #37424f;
+         }
+         .lisclick{
+             background-color: #37424f;
+         }
 		.cat{
 		      font-size: 18px;
-		      text-decoration:none;
+		      height: 45px;
+             /* border-bottom:1px whitesmoke solid;*/
+              margin-bottom: 1px;
 		      display:flex;
 		      justify-content:center;
 		      align-items: center;
-		    
+		      color: white;
+              box-shadow:0px 5px 5px white;
 		}
-		
-		.lis{
+        a:link {color: white; text-decoration:none !important;}
+        a:active{color: white;text-decoration:none !important; }
+        a:visited {color:white;text-decoration:none !important;}
+        a:hover {color: white; text-decoration:none !important;}
+
+        .lis{
 				display:flex;
-				margin-top:10px;
-				justify-content: flex-end;
+				height: 45px;
+                width: 100%;
+				justify-content: center;
+                align-items: center;
+                color: white;
+                background-color: #293038;
 		}
 		
 		
@@ -53,7 +70,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <nav class="navbar navbar-default" style="background-color:black;">
+        <nav class="navbar navbar-default" style="background-color:#FAFAFA;">
             <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -62,8 +79,8 @@
                            <span class="icon-bar"></span>
                            <span class="icon-bar"></span>
                         </button>
-                           <a class="navbar-brand" href="#">
-                               <img src="../imgs/荣耀.png" class="img-responsive" alt="Responsive image" style="position: absolute;left: 0px;top: 0px;">
+                           <a class="navbar-brand" href="#" style="margin-left: 20px">
+                               管理控制台
                            </a>
                     </div>
 
@@ -72,13 +89,13 @@
                        <ul class="nav navbar-nav navbar-right">
                           <li>
 		                      <a href="manager.html" target="iframe">
-			                     <span class="glyphicon glyphicon-user" aria-hidden="true"style="color:white;"></span>
+			                     <span class="glyphicon glyphicon-user" aria-hidden="true"style="color:BLACK;"></span>
 		                      </a>
 		                  </li>
 		
 		                  <li>
 		                     <a href="addguanli.html" target="iframe">
-			                    <span class="glyphicon glyphicon-plus" aria-hidden="true"style="color:white;"></span>
+			                    <span class="glyphicon glyphicon-plus" aria-hidden="true"style="color:BLACK;"></span>
 		                     </a>
 		                  </li>
 		
@@ -88,7 +105,7 @@
 		                     </a>
 		                  </li> -->
 		                   <li class="dropdown" >
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"style="color:white;"></span> <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:BLACK;"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"style="color:black;"></span> <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="addCart.jsp" target="iframe">添加购物车</a></li>
                                     <li><a href="cart?operation=2" target="iframe">查询购物车</a></li>
@@ -98,18 +115,18 @@
 		
 		                  <li>
 		                     <a href="main.html" target="iframe">
-			                     <span class="glyphicon glyphicon-home" aria-hidden="true"style="color:white;"></span>
+			                     <span class="glyphicon glyphicon-home" aria-hidden="true"style="color:BLACK;"></span>
 		                     </a>
 		                  </li>
 		
 		                  <li>
 			                  <a href="http://localhost:8080/BusinessProject_Web/login.jsp" id="back">
-			                      <span class="glyphicon glyphicon-off" aria-hidden="true" style="color:white;"></span>
+			                      <span class="glyphicon glyphicon-off" aria-hidden="true" style="color:BLACK;"></span>
 			                  </a>
 		                  </li>
 		
                           <li class="dropdown" >
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">主题<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:BLACK;">主题<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">蓝色</a></li>
                                     <li><a href="#">黑色</a></li>
@@ -122,60 +139,67 @@
           </nav>
      </div><!-- 第一行结束 -->
               
-     <div class="row" style="margin-top:-15px">
+     <div class="row" style="margin-top:-19px">
           <!-- 左侧部分菜单栏 -->
-           <div class="col-sm-2 col-md-2 col-lg-2" >
-              <div id="contro" style="font-size: 25px;display: flex;justify-content: center;align-items: flex-end;">
-              <img src="../imgs/工作台 .png">
-                                     &nbsp;&nbsp;&nbsp;&nbsp;工作台
+           <div class="col-sm-2 col-md-2 col-lg-2" style="height:600px;background-color:#293038">
+              <div id="contro" style="margin:0px;padding:0px;height:45px;font-size: 18px;display: flex;justify-content: center;align-items:center;color: white;background-color:#37424f;border-bottom: 1px whitesmoke solid">
+                 管理控制台
               </div>
-			  <ul id="menu" style="display: none">
-					<li style="margin-top: 15px">
+			  <ul id="menu" style="display: none;">
+                  <li >
+                      <a href="#" class="cat">
+                          用户中心
+                      </a>
+                      <ul style="display: none;font-size: 15px;">
+                          <li><a href="main.jsp"  class="lis" target="iframe">账号管理</a></li>
+                          <li><a href="#"  class="lis" target="iframe">消息中心</a></li>
+                          <li><a href="#"  class="lis" target="iframe">订单管理</a></li>
+
+                      </ul>
+                  </li>
+					<li >
 						<a href="#" class="cat">
-						<img src="../imgs/商品管理.png">
-						&nbsp;&nbsp;&nbsp;&nbsp;商品管理
+						商品管理
 						</a>
-						<ul style="display: none;font-size: 18px;">
+						<ul style="display: none;font-size: 15px;">
 							<li><a href="AddProduct.jsp"  class="lis" target="iframe">添加商品</a></li>
 							<li><a href="product?operation=2&pageNo=1&pageSize=5" class="lis" target="iframe">查询商品</a></li>
 						</ul>
 					</li>
-					
-					
-					
-					<li style="margin-top: 15px">
+
+
+
+					<li >
 						<a href="#" class="cat">
-						<img src="../imgs/商品管理.png">
-						&nbsp;&nbsp;&nbsp;&nbsp;类别管理
+
+						类别管理
 						</a>
 						<ul style="display: none;font-size: 18px;">
 							<li><a href="addCategory.jsp"  class="lis" target="iframe">添加类别</a></li>
 							<li><a href="category?operation=2" class="lis" target="iframe">查询类别</a></li>
 						</ul>
 					</li>
-					
-					
-					
-					<li style="margin-top: 15px">
+
+
+
+					<li >
 						<a href="#" class="cat">
-						<img src="../imgs/商品管理.png">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购物车
+						购物车
 						</a>
 						<ul style="display: none;font-size: 18px;">
 							<li><a href="addCart.jsp" class="lis" target="iframe">添加购物车</a></li>
 							<li><a href="cart?operation=2" class="lis" target="iframe">查询购物车</a></li>
 						</ul>
 					</li>
-					<li style="margin-top: 15px">
+					<li >
 						<a href="#" class="cat">
-						<img src="../imgs/商品管理.png">
-						&nbsp;&nbsp;&nbsp;&nbsp;订单处理</a>
+						订单处理</a>
 						<ul style="display: none;font-size: 18px;">
 							<li><a href="order?operation=2&pageNo=${pageNo}&pageSize=5" class="lis" target="iframe">查询订单</a></li>
 						</ul>
 					</li>
 			</ul>
-				
+
 				
 				
 		   </div><!-- 结束左侧部分 -->
@@ -196,18 +220,19 @@
 </body>
 <script>
 		$(function(){
-			$("#contro").click(function(){
-     			$("#menu").fadeToggle()     			
-     			$("#menu>li>a").click(function(){
-     		        $(this).addClass("current")
-     		       .next().toggle()
-     		       .parent().siblings()
-     		       .children().removeClass("current")
-     		       .next().hide();     			
-     		    })     		     		
-     	     })
+            $("#menu>li>a").addClass("normal");
 
-     	  
+			$("#contro").click(function(e){
+     			$("#menu").slideToggle();
+                $("#menu>li>a").next().slideUp();
+     	     })
+            $("#menu>li>a").click(function(){
+                $(this).removeClass("normal").addClass("current")
+                    .next().slideToggle()
+                    .parent().siblings()
+                    .children().removeClass("current").addClass("normal")
+                    .next().hide();
+            })
 		 })
 
 </script>
