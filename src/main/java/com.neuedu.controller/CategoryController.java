@@ -19,6 +19,9 @@ import com.neuedu.service.CategoryService;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.CategoryServiceImpl;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 @WebServlet("/view/category")
 public class CategoryController extends HttpServlet {
 
@@ -26,7 +29,17 @@ public class CategoryController extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	CategoryService  cService=new CategoryServiceImpl();
+	CategoryService  cService;
+
+	public void setcService(CategoryService cService) {
+		this.cService = cService;
+	}
+
+	@Override
+	public void init() throws ServletException {
+		WebApplicationContext mWebApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		cService=(CategoryService) mWebApplicationContext.getBean("cService");
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

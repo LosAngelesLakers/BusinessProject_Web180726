@@ -13,8 +13,12 @@ import com.neuedu.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 
 	
-	ProductDao productDao=new ProductMybatisImpl();
-	
+	ProductDao productDao;
+
+	public void setProductDao(ProductDao productDao) {
+		this.productDao = productDao;
+	}
+
 	@Override
 	public boolean addProduct(Product product) {
 		// TODO Auto-generated method stub

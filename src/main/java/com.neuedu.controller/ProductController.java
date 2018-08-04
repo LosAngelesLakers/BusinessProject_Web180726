@@ -16,6 +16,8 @@ import com.neuedu.entity.Product;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.ProductServiceImpl;
 import com.neuedu.utils.DBUtils;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 @WebServlet("/view/product")
 public class ProductController extends HttpServlet{
@@ -24,10 +26,19 @@ public class ProductController extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	ProductService  pService=new ProductServiceImpl();
-			
-	
-	@Override
+	ProductService  pService;
+
+	public void setpService(ProductService pService) {
+		this.pService = pService;
+	}
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext mWebApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        pService=(ProductService) mWebApplicationContext.getBean("pService");
+    }
+
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");

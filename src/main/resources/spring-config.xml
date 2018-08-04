@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--Cart-->
+    <bean id="cartService" class="com.neuedu.service.impl.CartServiceImpl">
+        <!--class的属性-->
+        <property name="cartDao" ref="cartDao"></property>
+
+    </bean>
+
+    <bean id="cartDao" class="com.neuedu.dao.impl.jdbc.mybatis.CartMybatisImpl"></bean>
+
+<!--product-->
+    <bean id="pService" class="com.neuedu.service.impl.ProductServiceImpl">
+        <property name="productDao" ref="productDao"></property>
+
+    </bean>
+
+    <bean id="productDao" class="com.neuedu.dao.impl.jdbc.mybatis.ProductMybatisImpl"></bean>
+
+
+ <!--Account-->
+    <bean id="aService" class="com.neuedu.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
+
+    <bean id="accountDao" class="com.neuedu.dao.impl.jdbc.mybatis.AccountMybatisImpl"></bean>
+
+<!--Category-->
+    <bean id="cService" class="com.neuedu.service.impl.CategoryServiceImpl">
+        <property name="categoryDao" ref="categoryDao"></property>
+    </bean>
+
+    <bean id="categoryDao" class="com.neuedu.dao.impl.jdbc.mybatis.CategoryMybatisImpl"></bean>
+
+ <!--UserOrder-->
+    <bean id="orderService" class="com.neuedu.service.impl.OrderServiceImpl">
+        <property name="orderdao" ref="orderdao"></property>
+    </bean>
+
+    <bean id="orderdao" class="com.neuedu.dao.impl.jdbc.mybatis.OrderMybatisImpl"></bean>
+
+<!--Login-->
+    <!--<bean id="LoginFilter" class="com.neuedufilter.LoginFilter">
+        <property name="loginService" ref="loginService"></property>
+        
+    </bean>
+
+    <bean id="loginService" class="com.neuedu.service.impl.LoginServiceImpl">
+        <property name="loginDao" ref="loginDao"></property>
+    </bean>
+
+    <bean id="loginDao" class="com.neuedu.dao.impl.jdbc.mybatis.LoginMybatisImpl"></bean>
+-->
+
+</beans>
+

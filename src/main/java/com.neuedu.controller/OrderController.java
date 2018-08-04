@@ -17,11 +17,24 @@ import com.neuedu.entity.Product;
 import com.neuedu.entity.UserOrder;
 import com.neuedu.service.OrderService;
 import com.neuedu.service.impl.OrderServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 @WebServlet("/view/order")
 public class OrderController extends HttpServlet{
 
-	OrderService orderService=new OrderServiceImpl();	
-	@Override
+	OrderService orderService;
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext mWebApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        orderService=(OrderService) mWebApplicationContext.getBean("orderService");
+    }
+
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operation=request.getParameter("operation");
 		System.out.println(operation);

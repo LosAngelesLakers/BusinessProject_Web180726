@@ -19,9 +19,12 @@ import com.neuedu.service.OrderService;
 import com.neuedu.utils.Utils;
 
 public class OrderServiceImpl implements OrderService {
-    OrderDao orderdao=new OrderMybatisImpl();
-	
-	
+    OrderDao orderdao;
+
+	public void setOrderdao(OrderDao orderdao) {
+		this.orderdao = orderdao;
+	}
+
 	@Override
 	public boolean createOrder(UserOrder userorder) {
 		// TODO Auto-generated method stub

@@ -14,15 +14,30 @@ import com.neuedu.entity.Account;
 import com.neuedu.entity.Product;
 import com.neuedu.service.AccountService;
 import com.neuedu.service.ILoginService;
+import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.AccountServiceImpl;
 import com.neuedu.service.impl.LoginServiceImpl;
 import com.neuedu.utils.MD5Utils;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 
 @WebServlet("/view/account")
 public class AccountController extends HttpServlet{
      
-	AccountService aService=new AccountServiceImpl();
+	AccountService aService;
+
+	public void setaService(AccountService aService) {
+		this.aService = aService;
+	}
+
+    @Override
+    public void init() throws ServletException {
+        WebApplicationContext mWebApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        aService=(AccountService) mWebApplicationContext.getBean("aService");
+    }
+
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String operation=request.getParameter("operation");

@@ -7,7 +7,12 @@ import com.neuedu.entity.PageModel;
 import com.neuedu.service.AccountService;
 
 public class AccountServiceImpl implements AccountService {
-    AccountDao accountDao=new AccountDaoImpl();
+    AccountDao accountDao;
+
+	public void setAccountDao(AccountDao accountDao) {
+		this.accountDao = accountDao;
+	}
+
 	@Override
 	public boolean addAccount(Account account) {
 		// TODO Auto-generated method stub

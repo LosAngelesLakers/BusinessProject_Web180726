@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,14 +23,34 @@ import com.neuedu.service.CartService;
 import com.neuedu.service.ProductService;
 import com.neuedu.service.impl.CartServiceImpl;
 import com.neuedu.service.impl.ProductServiceImpl;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 @WebServlet("/view/cart")
 public class CartController extends HttpServlet{
   /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-    CartService cartService=new CartServiceImpl();
-    ProductService  pService=new ProductServiceImpl();
+
+	CartService cartService;
+	ProductService  pService;
+    public void setCartService(CartService cartService) {
+        this.cartService = cartService;
+    }
+
+	public void setpService(ProductService pService) {
+		this.pService = pService;
+	}
+
+	@Override
+    public void init() throws ServletException {
+        WebApplicationContext mWebApplicationContext = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        cartService=(CartService)mWebApplicationContext.getBean("cartService");
+		pService=(ProductService) mWebApplicationContext.getBean("pService");
+    }
+
+
     
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -222,7 +243,7 @@ public class CartController extends HttpServlet{
 			}
 			if(result) {
 				System.out.println("购物车修改成功");
-				findAllCart(request,response);
+				response.sendRedirect("http://127.0.0.1:8020/dianshang/shopingcar.html");
 			}else {
 				System.out.println("购物车修改失败");
 			}

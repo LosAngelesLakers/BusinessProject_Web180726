@@ -31,30 +31,30 @@ public class LoginDaoImpl implements ILoginDao {
 			
 			String  sql="select * from  account where username=? and password=? ";
 			 st=conn.prepareStatement(sql);
-			//∏¯’ºŒª∑˚∏≥÷µ
+			//ÁªôÂç†‰ΩçÁ¨¶ËµãÂÄº
 			 st.setString(1, _username);
 			 st.setString(2, _password);
-			
+
 			// asfksadfsdf'  or 1=1 -- ''
 			System.out.println(sql);
 			ResultSet rs=st.executeQuery();
 			if(rs.first()) {
-				 int  accountid= rs.getInt("accountid");	
+				 int  accountid= rs.getInt("accountid");
 				 String  name=rs.getString("username");
 				 String password=rs.getString("password");
 				 String ip=rs.getString("ip");
 				 String sex=rs.getString("sex");
-				
+
 				 account=new Account(accountid,name,password,ip,sex);
 			}
-			
-			
-			 
-			 
-			
-			
+
+
+
+
+
+
 			return account;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,8 +66,8 @@ public class LoginDaoImpl implements ILoginDao {
 				e.printStackTrace();
 			}
 		}
-		
-		
+
+
 		return null;
 	}
 
@@ -78,15 +78,15 @@ public class LoginDaoImpl implements ILoginDao {
 		PreparedStatement st=null;
 		try {
 			conn=DBUtils.getConnection();
-			
+
 			String  sql="update account set token=? where accountid=?";
 			st=conn.prepareStatement(sql);
-			//’ºŒª∑˚∏≥÷µ
+			//Âç†‰ΩçÁ¨¶ËµãÂÄº
 			st.setString(1, token);
 			st.setInt(2, acc.getAccountId());
 			System.out.println(sql);
 			st.execute();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -104,15 +104,15 @@ public class LoginDaoImpl implements ILoginDao {
 	public String findTokenByAccountid(int accountid) {
 		// TODO Auto-generated method stub
 		Connection conn=null;
-		PreparedStatement st=null; 
-		
+		PreparedStatement st=null;
+
 		try {
 			conn=DBUtils.getConnection();
 			//st=conn.createStatement();
-			
+
 			String  sql="select token from account where accountid=?";
 			 st=conn.prepareStatement(sql);
-			//∏¯’ºŒª∑˚∏≥÷µ
+			//ÁªôÂç†‰ΩçÁ¨¶ËµãÂÄº
 			st.setInt(1,accountid);
 			
 			System.out.println(sql);
