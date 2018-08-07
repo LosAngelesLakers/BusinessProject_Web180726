@@ -7,9 +7,9 @@
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
-    <environments default="development">
+   <!-- <environments default="development">
         <environment id="development">
-            <!--  将事务交给JDBC -->
+            &lt;!&ndash;  将事务交给JDBC &ndash;&gt;
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}" />
@@ -18,16 +18,16 @@
                 <property name="password" value="${password}"/>
             </dataSource>
         </environment>
-    </environments>
+    </environments>-->
 
-    <mappers>
+   <!-- <mappers>
         <mapper resource="com/neuedu/Mapper/UserMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/ProductMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/AccountMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/CartMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/CategoryMapper.xml"  />
         <mapper resource="com/neuedu/Mapper/UserOrderMapper.xml"  />
-    </mappers>
+    </mappers>-->
 
 
 

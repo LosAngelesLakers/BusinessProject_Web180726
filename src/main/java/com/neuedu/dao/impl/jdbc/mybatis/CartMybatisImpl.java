@@ -5,15 +5,22 @@ import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageModel;
 import com.neuedu.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Repository
 public class CartMybatisImpl implements CartDao {
+    @Autowired
+    private SqlSession sqlSession;
+
+
+
     @Override
     public boolean addCart(Cart cart) {
-        SqlSession sqlSession= MyBatisUtils.getSqlSession();
+       /* SqlSession sqlSession= MyBatisUtils.getSqlSession();*/
         sqlSession.insert("com.neuedu.entity.Cart.insertCart",cart);
         sqlSession.commit();
         sqlSession.close();
@@ -22,7 +29,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public boolean deleteCart(int id) {
-        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+       /* SqlSession sqlSession=MyBatisUtils.getSqlSession();*/
         sqlSession.selectOne("com.neuedu.entity.Cart.deleteCar",id);
         sqlSession.commit();
         sqlSession.close();
@@ -31,7 +38,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public boolean updataeCart(Cart cart) {
-        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+       /* SqlSession sqlSession=MyBatisUtils.getSqlSession();*/
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("productNum",cart.getProductNum());
         map.put("id",cart.getId());
@@ -44,7 +51,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public List<Cart> findAllCart() {
-        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+       /* SqlSession sqlSession=MyBatisUtils.getSqlSession();*/
         List<Cart> list=sqlSession.selectList("com.neuedu.entity.Cart.findAllCart");
         sqlSession.close();
         System.out.println(list);
@@ -59,7 +66,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public boolean updateCart(int id, int num,int totalprice) {
-        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+       /* SqlSession sqlSession=MyBatisUtils.getSqlSession();*/
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("productNum",num);
         map.put("totalprice",totalprice);
@@ -78,7 +85,7 @@ public class CartMybatisImpl implements CartDao {
 
     @Override
     public Cart findCartById(int id) {
-        SqlSession sqlSession=MyBatisUtils.getSqlSession();
+       /* SqlSession sqlSession=MyBatisUtils.getSqlSession();*/
         Cart cart=sqlSession.selectOne("com.neuedu.entity.Cart.findCartById",id);
         sqlSession.close();
         return cart;
@@ -87,7 +94,7 @@ public class CartMybatisImpl implements CartDao {
     @Override
     public PageModel<Cart> findCartByPage(int pageNo, int pageSize) {
 
-    SqlSession sqlSession=MyBatisUtils.getSqlSession();
+   /* SqlSession sqlSession=MyBatisUtils.getSqlSession();*/
         //获取总记录数
     int totalCount=sqlSession.selectOne("com.neuedu.entity.Cart.findTotalCount");
         //2.查询某页面的数据

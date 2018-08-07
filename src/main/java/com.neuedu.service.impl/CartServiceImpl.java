@@ -9,9 +9,12 @@ import com.neuedu.entity.Cart;
 import com.neuedu.entity.PageModel;
 import com.neuedu.entity.Product;
 import com.neuedu.service.CartService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CartServiceImpl implements CartService {
-
+    @Autowired
 	CartDao cartDao;
 
     public void setCartDao(CartDao cartDao) {

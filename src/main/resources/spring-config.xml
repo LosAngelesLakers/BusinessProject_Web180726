@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 <!--Cart-->
-    <bean id="cartService" class="com.neuedu.service.impl.CartServiceImpl">
-        <!--class的属性-->
+   <!-- <bean id="cartService" class="com.neuedu.service.impl.CartServiceImpl">
+        &lt;!&ndash;class的属性&ndash;&gt;
         <property name="cartDao" ref="cartDao"></property>
 
     </bean>
 
     <bean id="cartDao" class="com.neuedu.dao.impl.jdbc.mybatis.CartMybatisImpl"></bean>
-
+-->
 <!--product-->
-    <bean id="pService" class="com.neuedu.service.impl.ProductServiceImpl">
+   <!-- <bean id="pService" class="com.neuedu.service.impl.ProductServiceImpl">
         <property name="productDao" ref="productDao"></property>
 
     </bean>
 
     <bean id="productDao" class="com.neuedu.dao.impl.jdbc.mybatis.ProductMybatisImpl"></bean>
-
+-->
 
  <!--Account-->
-    <bean id="aService" class="com.neuedu.service.impl.AccountServiceImpl">
+   <!-- <bean id="aService" class="com.neuedu.service.impl.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"></property>
     </bean>
 
     <bean id="accountDao" class="com.neuedu.dao.impl.jdbc.mybatis.AccountMybatisImpl"></bean>
-
+-->
 <!--Category-->
-    <bean id="cService" class="com.neuedu.service.impl.CategoryServiceImpl">
+   <!-- <bean id="cService" class="com.neuedu.service.impl.CategoryServiceImpl">
         <property name="categoryDao" ref="categoryDao"></property>
     </bean>
 
     <bean id="categoryDao" class="com.neuedu.dao.impl.jdbc.mybatis.CategoryMybatisImpl"></bean>
-
+-->
  <!--UserOrder-->
-    <bean id="orderService" class="com.neuedu.service.impl.OrderServiceImpl">
+   <!-- <bean id="orderService" class="com.neuedu.service.impl.OrderServiceImpl">
         <property name="orderdao" ref="orderdao"></property>
     </bean>
 
-    <bean id="orderdao" class="com.neuedu.dao.impl.jdbc.mybatis.OrderMybatisImpl"></bean>
+    <bean id="orderdao" class="com.neuedu.dao.impl.jdbc.mybatis.OrderMybatisImpl"></bean>-->
 
 <!--Login-->
     <!--<bean id="LoginFilter" class="com.neuedufilter.LoginFilter">
@@ -53,6 +57,48 @@
 
     <bean id="loginDao" class="com.neuedu.dao.impl.jdbc.mybatis.LoginMybatisImpl"></bean>
 -->
+
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+
+<!--    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+       <property name="username" value="${jdbc.username}" />
+      <property name="password" value="${jdbc.password}" />
+   </bean>-->
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+
+         <property name="mapperLocations" value="classpath:com/neuedu/Mapper/*Mapper.xml"></property>
+
+         <property name="dataSource" ref="dataSource"></property>
+     </bean>
+
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+
+        <constructor-arg ref="sqlSessionFactory" index="0"></constructor-arg>
+
+
+    </bean>
+
+
+
+
+
+
+
+
 
 </beans>
 
